@@ -1,0 +1,22 @@
+class Solution:
+    def areAlmostEqual(self, s1: str, s2: str) -> bool:
+        if len(s1) != len(s2):
+            return False
+        mymap1 = {}
+        for i in s1:
+            mymap1[i] = mymap1.get(i,0)+1
+        for j in s2:
+            mymap1[j] = mymap1.get(j,0)-1
+        count = 0
+        for k in mymap1:
+            if mymap1[k]>=0:
+                count+=mymap1[k]
+        if count != 0:
+            return False 
+        misAligned = 0
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                misAligned+=1
+        if misAligned > 2:
+            return False 
+        return True
